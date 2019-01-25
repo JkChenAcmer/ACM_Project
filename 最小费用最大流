@@ -69,44 +69,14 @@ pill MinCost(){
 
 //***********************
 
-int in[N],out[N],sum;
-
 void init(){
     now=-1;//要求第一条边为0
     memset(head,-1,sizeof(head));
-    sum=0;
-    memset(in,0,sizeof(in));
-    memset(out,0,sizeof(out));
 }
 
-//建反悔图，流过一条反悔删除边，相当于保留
 int main(){int ca=0;int t;cin>>t;while(t--){
     init();
     sp=0,ep=N-1;
-    int n,m,_sp,_ep;scanf("%d%d%d%d",&n,&m,&_sp,&_ep);
-    in[_sp]++,out[_ep]++;//统一所有点：in==out
-
-    for(int i=1;i<=m;i++){
-        int a,b,v_stay,v_cut;
-        scanf("%d%d%d%d",&a,&b,&v_stay,&v_cut);
-        if(v_stay>v_cut){//添 用以反悔删除的边
-            add(a,b,1,v_stay-v_cut);
-            sum+=v_cut;//默认先删除
-        }
-        else{//添 反悔连接的边
-            add(b,a,1,-v_stay+v_cut);//反向：因为这样反悔后in[a]++,out[b]++ 相当于out[a]--,in[b]--
-            sum+=v_stay;
-            out[a]++,in[b]++;//默认先连接
-        }
-    }
-    //将还需要配对的度连入
-    int sum_in=0;
-    for(int i=1;i<=n;i++){
-        if(in[i]>out[i])add(sp,i,in[i]-out[i],0),sum_in+=in[i]-out[i];
-        else add(i,ep,out[i]-in[i],0);
-    }
-
-    pill ans=MinCost();
-    if(ans.first!=sum_in)printf("Case %d: impossible\n",++ca);
-    else printf("Case %d: %d\n",++ca,ans.second+sum);
+    ...
+    pill ans=MinCost();//{flow , cost}
 }}
