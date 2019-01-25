@@ -55,7 +55,7 @@ int dfs(int p,int v){
     return r;
 }
 
-LL dinic(){
+LL dinic(){//求最大流
     LL ans=0,t;
     while(bfs()){
         while(t=(LL)dfs(sp,inf))ans+=t;
@@ -67,7 +67,7 @@ LL dinic(){
 
 bool viss[N];
 int num;
-int count(int p){
+int count(int p){//遍历残余网络
     int ans=1;
     viss[p]=1;
     for(int i=head[p];~i;i=nex[i]){
@@ -85,26 +85,9 @@ void init(){
     memset(head,-1,sizeof(head));
 }
 
-int n,m;
-int V[5002];
-
-int main(){cin>>n>>m;
-    init();sp=0;ep=5001;
-    for(int i=1;i<=n;i++)scanf("%d",V+i);
-    for(int i=1,a,b;i<=m;i++){
-        scanf("%d%d",&a,&b);
-        add(a,b,inf);
-    }
-    LL sum=0;
-    for(int i=1;i<=n;i++){
-        if(V[i]>0)add(0,i,V[i]),sum+=(LL)V[i];
-        if(V[i]<0)add(i,5001,-V[i]);
-    }
-
-    LL ans=sum-dinic();
-
-    memset(viss,0,sizeof(viss));
-    int num=count(0)-1;
-
-    printf("%d %lld\n",num,ans);
+int main(){
+    init();
+    sp=0;ep=N-1;
+    ...
+    int ans=dinic();
 }
