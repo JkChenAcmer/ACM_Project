@@ -72,34 +72,34 @@ pill MinCost(){
 int in[N],out[N],sum;
 
 void init(){
-    now=-1;//ÒªÇóµÚÒ»Ìõ±ßÎª0
+    now=-1;//è¦æ±‚ç¬¬ä¸€æ¡è¾¹ä¸º0
     memset(head,-1,sizeof(head));
     sum=0;
     memset(in,0,sizeof(in));
     memset(out,0,sizeof(out));
 }
 
-//½¨·´»ÚÍ¼£¬Á÷¹ıÒ»Ìõ·´»ÚÉ¾³ı±ß£¬Ïàµ±ÓÚ±£Áô
+//å»ºåæ‚”å›¾ï¼Œæµè¿‡ä¸€æ¡åæ‚”åˆ é™¤è¾¹ï¼Œç›¸å½“äºä¿ç•™
 int main(){int ca=0;int t;cin>>t;while(t--){
     init();
     sp=0,ep=N-1;
     int n,m,_sp,_ep;scanf("%d%d%d%d",&n,&m,&_sp,&_ep);
-    in[_sp]++,out[_ep]++;//Í³Ò»ËùÓĞµã£ºin==out
+    in[_sp]++,out[_ep]++;//ç»Ÿä¸€æ‰€æœ‰ç‚¹ï¼šin==out
 
     for(int i=1;i<=m;i++){
         int a,b,v_stay,v_cut;
         scanf("%d%d%d%d",&a,&b,&v_stay,&v_cut);
-        if(v_stay>v_cut){//Ìí ÓÃÒÔ·´»ÚÉ¾³ıµÄ±ß
+        if(v_stay>v_cut){//æ·» ç”¨ä»¥åæ‚”åˆ é™¤çš„è¾¹
             add(a,b,1,v_stay-v_cut);
-            sum+=v_cut;//Ä¬ÈÏÏÈÉ¾³ı
+            sum+=v_cut;//é»˜è®¤å…ˆåˆ é™¤
         }
-        else{//Ìí ·´»ÚÁ¬½ÓµÄ±ß
-            add(b,a,1,-v_stay+v_cut);//·´Ïò£ºÒòÎªÕâÑù·´»Úºóin[a]++,out[b]++ Ïàµ±ÓÚout[a]--,in[b]--
+        else{//æ·» åæ‚”è¿æ¥çš„è¾¹
+            add(b,a,1,-v_stay+v_cut);//åå‘ï¼šå› ä¸ºè¿™æ ·åæ‚”åin[a]++,out[b]++ ç›¸å½“äºout[a]--,in[b]--
             sum+=v_stay;
-            out[a]++,in[b]++;//Ä¬ÈÏÏÈÁ¬½Ó
+            out[a]++,in[b]++;//é»˜è®¤å…ˆè¿æ¥
         }
     }
-    //½«»¹ĞèÒªÅä¶ÔµÄ¶ÈÁ¬Èë
+    //å°†è¿˜éœ€è¦é…å¯¹çš„åº¦è¿å…¥
     int sum_in=0;
     for(int i=1;i<=n;i++){
         if(in[i]>out[i])add(sp,i,in[i]-out[i],0),sum_in+=in[i]-out[i];
