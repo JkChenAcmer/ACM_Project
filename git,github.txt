@@ -1,0 +1,3 @@
+在修改文件后存至暂存区：git add . / git add a.cpp
+将暂存区修改题交到本地仓库：git commit -m '题交注释'
+将本地仓库题交到远程服务器：git push origin master / git push <远程主机名> <本地分支名> : <远程分支名> 
